@@ -38,11 +38,18 @@
     </div>
 </div>
 {% include 'fakenews/include/footer.html' %}
+<script id="alert-template" type="x-template">
+    <div class="alert alert-danger alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <span class="alert-text">blah blah</span>
+    </div>
+</script>
 <script type="text/javascript">
     $(function () {
         var url_input = $('#url_input');
         var submit_btn = $('#submit_url');
         var csrf_token = $('input[name=csrfmiddlewaretoken]').val();
+        var alert_template = $('#alert-template').html();
         var has_submitted = false;
         submit_btn.click(function () {
             if (!has_submitted) {
@@ -59,6 +66,7 @@
                     csrfmiddlewaretoken: csrf_token
                 };
                 $.post('{% url 'fn:detect' %}', data, function (data) {
+                    console.log(data);
                     if (data.success) {
                         document.location = data.results;
                     } else {
@@ -68,7 +76,9 @@
                                 .removeClass('btn-default')
                                 .addClass('btn-success')
                                 .html(old_html);
-                        console.log(data);
+                        var alert = $(alert_template);
+                        alert.find('.alert-text').text(data.msg);
+                        url_input.parent().before(alert);
                     }
                 }, 'json');
             }
