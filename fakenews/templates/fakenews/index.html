@@ -4,7 +4,9 @@
 {% block content %}
 <div class="page-section img-newpaper ">
     <div class="container">
-        <h1 class="title"><span class="spoof">Spoof</span><span class="proof">Proof</span><span class="net">.net</span></h1>
+        <a href="{% url 'fn:index' %}">
+            <h1 class="title"><span class="spoof">Spoof</span><span class="proof">Proof</span><span class="net">.net</span></h1>
+        </a>
         <div class="jumbotron">
             <h2>Detect fake news with ease!</h2>
             <p>Enter any site below for a credibility analysis.</p>

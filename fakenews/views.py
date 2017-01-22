@@ -4,6 +4,7 @@ from django.views.decorators.http import require_http_methods
 from django.shortcuts import render, reverse
 
 import json
+import random
 from hashlib import md5
 
 # Create your views here.
@@ -29,4 +30,10 @@ def detect(req):
     return HttpResponse(json.dumps(res), content_type='application/json')
 
 def results(req, url_hash):
-    return HttpResponse('not implemented')
+    passes = bool(random.getrandbits(1))
+    return render(req, 'fakenews/results.html', {
+        'overall': passes,
+        'breakdown': {
+            'Tone Analysis': passes,
+        }
+    })

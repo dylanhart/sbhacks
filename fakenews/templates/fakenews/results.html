@@ -1,0 +1,50 @@
+{% extends 'fakenews/base_html.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="page-section full img-newpaper ">
+        <div class="container">
+            <a href="{% url 'fn:index' %}">
+                <h1 class="title"><span class="spoof">Spoof</span><span class="proof">Proof</span><span class="net">.net</span></h1>
+            </a>
+            <div class="jumbotron">
+                <div class="alert alert-warning">
+                    <strong>Warning:</strong>
+                    SpoofProof is an early-stage research project and its results should not be blindly trusted.
+                    Always analyze sources for your self to determine their credibility.
+                </div>
+                <h2>Results:</h2>
+                <div class="panel panel-{% if overall %}success{% else %}danger{% endif %}">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">This source seems {% if overall %}credible{% else %}fake{% endif %}!</h3>
+                    </div>
+                    <div class="panel-body">
+                        By our analysis, this source seems {% if overall %}credible{% else %}fake{% endif %} and here is why:
+                    </div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Process</th>
+                                <th>Results</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for name, passes in breakdown.items %}
+                            <tr>
+                                <td>{{ name }}:</td>
+                                {% if passes %}
+                                    <td><i class="glyphicon glyphicon-ok"></i> Pass</td>
+                                {% else %}
+                                    <td><i class="glyphicon glyphicon-remove"></i> Fail</td>
+                                {% endif %}
+                            </tr>
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'fakenews/include/footer.html' %}
+{% endblock %}
