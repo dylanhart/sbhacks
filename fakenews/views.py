@@ -1,3 +1,4 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
 from django.http import HttpResponseBadRequest
 from django.views.decorators.http import require_http_methods
@@ -34,22 +35,24 @@ def detect(req):
         return HttpResponse(json.dumps(res), content_type='application/json')
 
     url = form.cleaned_data['url']
-
-    try:
-        out = spoof_proof.run(url) == 1
-    except Exception as e:
-        logger.error('failed to spoof_proof')
-        logger.error(str(e))
-        res = {'success': False, 'msg': 'An error occurred while processing this site.'}
-        return HttpResponse(json.dumps(res), content_type='application/json')
-
     hasher.update(url.encode('utf-8'))
     url_hash = hasher.hexdigest()
 
-    models.Result.objects.create(
-        url_hash=url_hash,
-        is_real=out,
-    )
+    try:
+        result = models.Result.objects.get(url_hash=url_hash)
+    except ObjectDoesNotExist:
+        try:
+            out = spoof_proof.run(url) == 1
+        except Exception as e:
+            logger.error('failed to spoof_proof')
+            logger.error(str(e))
+            res = {'success': False, 'msg': 'An error occurred while processing this site.'}
+            return HttpResponse(json.dumps(res), content_type='application/json')
+
+        result = models.Result.objects.create(
+            url_hash=url_hash,
+            is_real=out,
+        )
 
     res = {
         'success': True,
