@@ -7,10 +7,10 @@
         <h1 class="title"><span class="spoof">Spoof</span><span class="proof">Proof</span><span class="net">.net</span></h1>
         <div class="jumbotron">
             <h2>Detect fake news with ease!</h2>
-            <p>Enter any site below for a fake news analysis.</p>
+            <p>Enter any site below for a credibility analysis.</p>
             <div class="input-group input-group-lg">
                 {% csrf_token %}
-                <input id="url_input" class="form-control" type="text" placeholder="http://fake.site..." name="test_url"/>
+                <input id="url_input" class="form-control" type="text" placeholder="http://url.to/article..." name="test_url"/>
                 <span class="input-group-btn">
                     <button id="submit_url" class="btn btn-success"><i class="glyphicon glyphicon-search"></i> Detect Fake News</button>
                 </span>
