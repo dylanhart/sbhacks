@@ -51,6 +51,7 @@ def detect(req):
 
         result = models.Result.objects.create(
             url_hash=url_hash,
+            url=url,
             is_real=out,
         )
 
@@ -68,5 +69,6 @@ def results(req, url_hash):
         'overall': result.is_real,
         'breakdown': {
             'Tone Analysis': result.is_real,
-        }
+        },
+        'url': result.url
     })

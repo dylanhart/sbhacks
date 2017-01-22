@@ -14,6 +14,7 @@
                     Always analyze sources for your self to determine their credibility.
                 </div>
                 <h2>Results:</h2>
+                <p><strong>URL:</strong> {{ url }}</p>
                 <div class="panel panel-{% if overall %}success{% else %}danger{% endif %}">
                     <div class="panel-heading">
                         <h3 class="panel-title">This source seems {% if overall %}credible{% else %}fake{% endif %}!</h3>

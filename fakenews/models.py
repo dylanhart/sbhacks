@@ -4,4 +4,5 @@ from django.db import models
 
 class Result(models.Model):
     url_hash = models.SlugField(max_length=32)
+    url = models.TextField(null=True)
     is_real = models.BooleanField()
