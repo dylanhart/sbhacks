@@ -26,20 +26,15 @@
             <h2>Detect fake news with ease!</h2>
             <p>Enter any site below for a fake news analysis.</p>
             <div class="input-group input-group-lg">
-                <input class="form-control" type="text" placeholder="http://fake.site..." name="test_url"/>
+                {% csrf_token %}
+                <input id="url_input" class="form-control" type="text" placeholder="http://fake.site..." name="test_url"/>
                 <span class="input-group-btn">
-                    <button class="btn btn-success"><i class="glyphicon glyphicon-search"></i> Detect Fake News</button>
+                    <button id="submit_url" class="btn btn-success"><i class="glyphicon glyphicon-search"></i> Detect Fake News</button>
                 </span>
             </div>
         </div>
     </div>
 </div>
-{#<div class="divider">#}
-{#    <div class="container">#}
-{#        <div style="display: inline-block;background-color: darkcyan; border-radius: 50%">#}
-{#        <h3>sup</h3></div>#}
-{#    </div>#}
-{#</div>#}
 <div class="page-section dark">
     <div class="container">
         <h2>About Fake News</h2>
@@ -82,5 +77,42 @@
 
     </div>
 </footer>
+<script type="text/javascript">
+    $(function () {
+        var url_input = $('#url_input');
+        var submit_btn = $('#submit_url');
+        var csrf_token = $('input[name=csrfmiddlewaretoken]').val();
+        var has_submitted = false;
+        submit_btn.click(function () {
+            if (!has_submitted) {
+                has_submitted = true;
+                url_input.attr('disabled', true);
+                var old_html = submit_btn.html();
+                submit_btn
+                        .removeClass('btn-success')
+                        .addClass('btn-default')
+                        .html('<i class="glyphicon glyphicon-refresh spin"></i> Processing...');
+
+                var data = {
+                    url: url_input.val(),
+                    csrfmiddlewaretoken: csrf_token
+                };
+                $.post('{% url 'fn:detect' %}', data, function (data) {
+                    if (data.success) {
+                        document.location = data.results;
+                    } else {
+                        has_submitted = false;
+                        url_input.attr('disabled', false);
+                        submit_btn
+                                .removeClass('btn-default')
+                                .addClass('btn-success')
+                                .html(old_html);
+                        console.log(data);
+                    }
+                }, 'json');
+            }
+        })
+    });
+</script>
 </body>
 </html>
