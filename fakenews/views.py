@@ -7,6 +7,8 @@ import json
 import random
 from hashlib import md5
 
+from . import forms
+
 # Create your views here.
 
 def index(req):
@@ -15,10 +17,17 @@ def index(req):
 @require_http_methods(['POST'])
 def detect(req):
     hasher = md5()
-    url = req.POST.get('url', None)
-    if not url:
-        res = {'success': False, 'msg': 'url is required'}
+
+    form = forms.DetectForm(data=req.POST)
+    if not form.is_valid():
+        msg = []
+        for field, errors in form.errors.items():
+            for error in errors:
+                msg.append('{}: {}'.format(field, error))
+        res = {'success': False, 'msg': ', '.join(msg)}
         return HttpResponse(json.dumps(res), content_type='application/json')
+
+    url = form.cleaned_data['url']
 
     hasher.update(url.encode('utf-8'))
     url_hash = hasher.hexdigest()

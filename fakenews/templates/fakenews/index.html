@@ -84,6 +84,9 @@
                         .addClass('btn-default')
                         .html('<i class="glyphicon glyphicon-refresh spin"></i> Processing...');
 
+                // clear old alerts
+                $('.alert-dismissable').remove();
+
                 var data = {
                     url: url_input.val(),
                     csrfmiddlewaretoken: csrf_token
@@ -100,7 +103,7 @@
                                 .addClass('btn-success')
                                 .html(old_html);
                         var alert = $(alert_template);
-                        alert.find('.alert-text').text(data.msg);
+                        alert.find('.alert-text').html(data.msg);
                         url_input.parent().before(alert);
                     }
                 }, 'json');
