@@ -3,6 +3,7 @@ from .models import *
 
 # Register your models here.
 
-admin.register([
+
+admin.site.register([
     Result,
 ])
