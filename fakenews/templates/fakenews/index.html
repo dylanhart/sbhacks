@@ -3,14 +3,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Fakenews</title>
+    <title>SpoofProof.net</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'css/fakenews.css'  %}">
     <!-- Optional theme -->
-{#    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"#}
-{#          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">#}
+    <link rel="stylesheet" href="{% static 'css/journal-theme.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fakenews.css'  %}">
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"
             integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
@@ -20,18 +19,68 @@
 </head>
 <body>
 
-<div class="container">
-    <h1>FakeNews.net</h1>
-    <div class="jumbotron">
-        <h2>Detect fake news with ease!</h2>
-        <p>Enter any site below for a fake news analysis.</p>
-        <div class="input-group input-group-lg">
-            <input class="form-control" type="text" placeholder="http://fake.site..." name="test_url"/>
-            <span class="input-group-btn">
-                <button class="btn btn-success"><i class="glyphicon glyphicon-search"></i> Detect Fake News</button>
-            </span>
+<div class="page-section img-newpaper ">
+    <div class="container">
+        <h1 class="title"><span class="spoof">Spoof</span><span class="proof">Proof</span><span class="net">.net</span></h1>
+        <div class="jumbotron">
+            <h2>Detect fake news with ease!</h2>
+            <p>Enter any site below for a fake news analysis.</p>
+            <div class="input-group input-group-lg">
+                <input class="form-control" type="text" placeholder="http://fake.site..." name="test_url"/>
+                <span class="input-group-btn">
+                    <button class="btn btn-success"><i class="glyphicon glyphicon-search"></i> Detect Fake News</button>
+                </span>
+            </div>
         </div>
     </div>
+</div>
+{#<div class="divider">#}
+{#    <div class="container">#}
+{#        <div style="display: inline-block;background-color: darkcyan; border-radius: 50%">#}
+{#        <h3>sup</h3></div>#}
+{#    </div>#}
+{#</div>#}
+<div class="page-section dark">
+    <div class="container">
+        <h2>About Fake News</h2>
+        <div class="row">
+            <div class="col-md-4 col-xs-12">
+                <h3>Blarg 1</h3>
+                <p>blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah </p>
+            </div>
+            <div class="col-md-4 col-xs-12">
+                <h3>Blarg 1</h3>
+                <p>blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah </p>
+            </div>
+            <div class="col-md-4 col-xs-12">
+                <h3>Blarg 1</h3>
+                <p>blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah </p>
+            </div>
+        </div>
+    </div>
+</div>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-sm-9 col-xs-8">
+                <h4>&copy; 2017 SpoofProof</h4>
+                <p class="skip-gap">Created By:</p>
+                <ul>
+                    <li>Jesus Bamford</li>
+                    <li>Heather Bradfield</li>
+                    <li>Kristen Godinez</li>
+                    <li>Dylan Hart</li>
+                </ul>
+                <p>at <a href="http://www.sbhacks.com/" target="_blank">SBHacks III</a></p>
+            </div>
+            <div class="col-lg-2 col-sm-3 col-xs-4">
+                <a href="http://www.sbhacks.com/" target="_blank">
+                    <img class="img-responsive" src="{% static 'img/sbhacks.png' %}">
+                </a>
+            </div>
+        </div>
 
+    </div>
+</footer>
 </body>
 </html>

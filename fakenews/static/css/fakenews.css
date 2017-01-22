@@ -1,4 +1,58 @@
 
+.title {
+    color: #3fad46;
+}
+.title .net {
+    color: #1f7e9a;
+}
+
+.jumbotron {
+    background-color: hsla(193, 56%, 86%, 0.8);
+}
+
+.page-section {
+    min-height: 50vh;
+}
+.page-section.dark {
+    background-color: #2aabd2;
+    color: white;
+}
+.page-section.dark h2 {
+}
+
+footer {
+    padding: 1em;
+    font-family: "Raleway","Helvetica Neue",Helvetica,Arial,sans-serif;
+    background-color: #1f7e9a;
+    color: white;
+    border-top: 3px solid #19657b;
+}
+footer a {
+    color: white;
+    text-decoration: underline;
+}
+footer a:hover {
+    color: rgba(185, 254, 255, 0.45);
+}
+
+.skip-gap {
+    margin-bottom: 0;
+}
+
+.img-newpaper {
+    background-image: url('../img/paper_light.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.divider {
+    position: absolute;
+}
+
+
+.text-big {
+    font-size: 1.5em;
+}
 .text-large {
     font-size: 2em;
 }
