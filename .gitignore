@@ -136,3 +136,4 @@ fabric.properties
 
 db.sqlite3
 .idea/vcs.xml
+creds.py
