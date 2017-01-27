@@ -1,4 +1,4 @@
-# <SpoofProof.net>
+# [SpoofProof.net](http://spoofproof.net)
 
 ## Inspiration
 
